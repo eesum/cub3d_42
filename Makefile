@@ -18,15 +18,15 @@ MLX_DIR = mlx
 INC_DIR = include
 # P_SRCS = parse.c
 E_SRCS = main.c
-# U_SRCS = utils.c
+U_SRCS = util.c
 # P_OBJS = $(P_SRCS:.c=.o)
 E_OBJS = $(E_SRCS:.c=.o)
-# U_OBJS = $(U_SRCS:.c=.o)
+U_OBJS = $(U_SRCS:.c=.o)
 # P_DEPS = $(P_SRCS:.c=.d)
 E_DEPS = $(E_SRCS:.c=.d)
-# U_DEPS = $(U_SRCS:.c=.d)
-A_OBJS = $(E_OBJS) #$(U_OBJS) $(P_OBJS) 
-A_DEPS = $(E_DEPS) #$(U_DEPS) $(P_DEPS) 
+U_DEPS = $(U_SRCS:.c=.d)
+A_OBJS = $(E_OBJS) $(U_OBJS) #$(P_OBJS) 
+A_DEPS = $(E_DEPS) $(U_DEPS) #$(P_DEPS) 
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
 LIBINC = -lmlx -Lmlx -lft -Llibft -framework OpenGL -framework Appkit
 
