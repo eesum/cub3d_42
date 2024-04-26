@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:50:33 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/26 10:54:04 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/04/26 19:39:16 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "util.h"
+#include "include/util.h"
 
 void	error_exit(char *msg)
 {
@@ -31,4 +31,19 @@ void	*ft_malloc_err(size_t size)
 	if (ptr == NULL)
 		error_exit("Malloc failed.");
 	return ((void *)ptr);
+}
+
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	if (arr == NULL)
+		return ;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
