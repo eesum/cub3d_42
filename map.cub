@@ -5,8 +5,8 @@ WE ./texture/w_texture.xpm
 EA    ./texture/e_texture.xpm
 
 
-F 10,10,0
-C 225,30,100
+F 56,56,56
+C 255,231,166
 
 
         1111111111111111111111111
