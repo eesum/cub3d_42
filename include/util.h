@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:51:05 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/26 10:56:00 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/04/26 12:27:58 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,8 @@
 # include "libft.h"
 # include <unistd.h>
 # include <stdlib.h>
+
+void	error_exit(char *msg);
+void	*ft_malloc_err(size_t size);
 
 #endif
