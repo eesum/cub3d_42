@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_valid_chk.c                                    :+:      :+:    :+:   */
+/*   map_valid_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:56:33 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/04/26 19:40:27 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/04/26 23:58:46 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/parse.h"
-#include "include/util.h"
+#include "parse.h"
+#include "util.h"
 
 void	check_map_valid(t_list *map)
 {

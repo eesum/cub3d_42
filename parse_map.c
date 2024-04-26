@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parse.c                                        :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 22:41:14 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/04/26 19:39:07 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/04/27 00:04:02 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/parse.h"
-#include "include/util.h"
+#include "parse.h"
+#include "util.h"
 
 static void	make_map_lst(t_list **map, int fd)
 {
@@ -81,7 +81,7 @@ void	parse_map(int fd, char ***map)
 
 	maplst = NULL;
 	make_map_lst(&maplst, fd);
-	lst_trim(&maplst);
+	ft_lst_trim(&maplst);
 	check_map_valid(maplst);
 	*map = make_map_arr(maplst, &col, &row);
 	check_surrounded_wall(*map, col, row);

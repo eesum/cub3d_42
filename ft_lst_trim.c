@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_lst_trim.c                                     :+:      :+:    :+:   */
+/*   ft_lst_trim.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:57:47 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/04/26 19:38:43 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/04/27 00:01:25 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/parse.h"
-#include "include/util.h"
+#include "parse.h"
+#include "util.h"
 
 static t_list	*ft_lstlast_prev(t_list *lst)
 {
@@ -84,7 +84,7 @@ static void	delete_newline(t_list **map)
 	*map = head;
 }
 
-void	lst_trim(t_list **map)
+void	ft_lst_trim(t_list **map)
 {
 	t_list	*head;
 

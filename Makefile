@@ -6,7 +6,7 @@
 #    By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 18:38:57 by seohyeki          #+#    #+#              #
-#    Updated: 2024/04/26 19:34:21 by seohyeki         ###   ########.fr        #
+#    Updated: 2024/04/27 00:01:37 by seohyeki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ LIBFT_DIR = libft
 MLX = libmlx.a
 MLX_DIR = mlx
 INC_DIR = include
-P_SRCS = map_lst_trim.c \
+P_SRCS = parse_info.c \
+		 init.c \
+		 ft_lst_trim.c \
 		 map_parse_utils.c \
 		 map_parse.c \
 		 map_valid_chk.c
