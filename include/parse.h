@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:34:34 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/26 16:49:46 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/04/26 19:58:38 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ typedef struct s_img
 
 int		check_argv(int argc, char **argv);
 void	parse_map_info(int fd, t_map_info *info);
+
+void	init_mlx_data(t_ptr *ptr, t_map_info *info, t_img *img, char *program_name)
+;	//추후 다른 헤더로 이동 가능
+
 
 
 #endif

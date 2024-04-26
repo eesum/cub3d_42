@@ -6,7 +6,7 @@
 #    By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 18:38:57 by seohyeki          #+#    #+#              #
-#    Updated: 2024/04/26 15:50:31 by sumilee          ###   ########.fr        #
+#    Updated: 2024/04/26 19:36:59 by sumilee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFT_DIR = libft
 MLX = libmlx.a
 MLX_DIR = mlx
 INC_DIR = include
-P_SRCS = parse_info.c
+P_SRCS = parse_info.c init.c
 E_SRCS = main.c
 U_SRCS = util.c
 P_OBJS = $(P_SRCS:.c=.o)
