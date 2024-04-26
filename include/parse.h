@@ -6,15 +6,26 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:34:34 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/26 11:08:35 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/04/26 15:39:40 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
+
+# define IMG_H 32 //추후 다른 헤더로 이동 가능
+# define IMG_W 32
+
 # include "libft.h"
+# include <mlx.h>
 # include <unistd.h>
+
+typedef struct s_ptr	//추후 다른 헤더로 이동 가능
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+}				t_ptr;
 
 typedef struct s_map_info
 {
@@ -24,10 +35,14 @@ typedef struct s_map_info
 	char *east;
 	char *floor;
 	char *ceiling;
+	int fl_color;
+	int cl_color;
 }				t_map_info;
 
 typedef struct s_img
 {
+	int	img_h;
+	int	img_w;
 	void *no_img;
 	void *so_img;
 	void *we_img;
