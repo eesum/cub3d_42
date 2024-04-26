@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:50:33 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/26 14:56:22 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/04/26 17:48:58 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,3 +70,28 @@ void	free_all(char **arg)
 	}
 	free(arg);
 }
+
+int	ft_atoi_err(const char *nptr)
+{
+	int	i;
+	int	sign;
+	int	result;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (nptr[i] && (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13)))
+		i++;
+	if (nptr[i] && (nptr[i] == '-' || nptr[i] == '+'))
+	{
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
+		result = result * 10 + (nptr[i++] - '0');
+	if (sign < 0 || nptr[i])
+		error_exit("Wrong color information.");
+	return (result);
+}
+
