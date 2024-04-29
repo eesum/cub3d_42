@@ -6,10 +6,11 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:57:47 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/04/27 00:01:25 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:24:19 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "parse.h"
 #include "util.h"
 
@@ -35,32 +36,35 @@ static void	trim_start_node(t_list **map)
 
 	while (*map != NULL)
 	{
-		if (is_emptyline((char *)(*map)->content) == 0)
-			return ;
-		else
+		if (is_emptyline((char *)((*map)->content)))
 		{
 			tmp = *map;
 			*map = (*map)->next;
 			ft_lstdelone(tmp, free);
 		}
+		else
+			return ;
 	}
 }
 
-static void	trim_end_node(t_list **map, t_list *head)
+static void	trim_end_node(t_list **map)
 {
+	t_list	*head;
+
+	head = *map;
 	while (1)
 	{
 		*map = ft_lstlast_prev(*map);
-		if (is_emptyline((char *)(*map)->next->content) == 0)
-		{
-			*map = head;
-			return ;
-		}
-		else
+		if (is_emptyline((char *)((*map)->next->content)))
 		{
 			ft_lstdelone((*map)->next, free);
 			(*map)->next = NULL;
 			*map = head;
+		}
+		else
+		{
+			*map = head;
+			return ;
 		}
 	}
 }
@@ -68,17 +72,18 @@ static void	trim_end_node(t_list **map, t_list *head)
 static void	delete_newline(t_list **map)
 {
 	t_list	*head;
+	char	*cur;
 	size_t	i;
 
 	head = *map;
 	while (*map)
 	{
+		cur = (char *)((*map)->content);
 		i = 0;
-		while (((char *)(*map)->content)[i] != '\0'
-			&& ((char *)(*map)->content)[i] != '\n')
+		while (cur[i] != '\0' && cur[i] != '\n')
 			i++;
-		if (((char *)(*map)->content)[i] == '\n')
-			((char *)(*map)->content)[i] = '\0';
+		if (cur[i] == '\n')
+			cur[i] = '\0';
 		*map = (*map)->next;
 	}
 	*map = head;
@@ -86,12 +91,9 @@ static void	delete_newline(t_list **map)
 
 void	ft_lst_trim(t_list **map)
 {
-	t_list	*head;
-
 	trim_start_node(map);
 	if (*map == NULL)
-		error_exit("invalid map.");
-	head = *map;
-	trim_end_node(map, head);
+		error_exit("Invalid map.");
+	trim_end_node(map);
 	delete_newline(map);
 }

@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:56:33 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/04/26 23:58:46 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:24:45 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	check_map_valid(t_list *map)
 	while (map)
 	{
 		if (is_emptyline(map->content))
-			error_exit("invalid map.");
+			error_exit("Invalid map.");
 		if (is_not_element(map->content, &player_flag))
-			error_exit("invalid map.");
+			error_exit("Invalid map.");
 		map = map->next;
 	}
 	if (player_flag == 0)
-		error_exit("invalid map.");
+		error_exit("Invalid map.");
 }
 
 void	check_surrounded_wall(char **map, size_t col, size_t row)
@@ -44,13 +44,13 @@ void	check_surrounded_wall(char **map, size_t col, size_t row)
 			if (map[i][j] == '0' || is_palyer_pos(map[i][j]))
 			{
 				if (i == 0 || i == (row - 1) || j == 0 || j == (col - 1))
-					error_exit("invalid map.");
+					error_exit("Invalid map.");
 				else if (map[i + 1][j] == ' ' || map[i - 1][j] == ' '
 					|| map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
-					error_exit("invalid map.");
+					error_exit("Invalid map.");
 				else if (map[i + 1][j - 1] == ' ' || map[i + 1][j + 1] == ' '
 					|| map[i - 1][j - 1] == ' ' || map[i - 1][j + 1] == ' ')
-					error_exit("invalid map.");
+					error_exit("Invalid map.");
 			}
 			j++;
 		}

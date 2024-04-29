@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 22:41:14 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/04/27 00:04:02 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:22:08 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ static char	**make_map_arr(t_list *maplst, size_t *col, size_t *row)
 	char	**map;
 
 	count_mapsize(maplst, col, row);
-	map = (char **)ft_malloc_err(sizeof(char *) * (*row + 1));
+	map = ft_malloc_err(sizeof(char *) * (*row + 1));
 	map[*row] = NULL;
 	i = 0;
 	while (maplst)
 	{
-		map[i] = (char *)ft_malloc_err(sizeof(char) * (*col + 1));
+		map[i] = ft_malloc_err(sizeof(char) * (*col + 1));
 		ft_memset(map[i], 32, *col + 1);
 		map[i][*col] = 0;
 		j = 0;

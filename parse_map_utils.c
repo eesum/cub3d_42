@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:59:35 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/04/27 00:03:57 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:25:13 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	is_not_element(char *str, int *player_flag)
 		else if (is_palyer_pos(str[i]))
 		{
 			if (*player_flag)
-				error_exit("invalid map.");
+				error_exit("Invalid map.");
 			else
 				*player_flag = 1;
 			i++;
