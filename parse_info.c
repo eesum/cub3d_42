@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:36 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/26 17:48:41 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/04/29 20:25:18 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ static int	find_n_save(char **split, t_map_info *info, int *cnt)
 		info->ceiling = ft_strdup_err(split[1]);
 	else
 	{
-		free_all(split);
+		free_arr(split);
 		return (1);
 	}
 	(*cnt)++;
-	free_all(split);
+	free_arr(split);
 	return (0);
 }
 
@@ -106,7 +106,7 @@ static void	convert_color(char *code, int *color)
 	if (i != 3 || split[i] != NULL)
 		error_exit("Wrong color information.");
 	*color = result;
-	free_all(split);
+	free_arr(split);
 }
 
 void	parse_map_info(int fd, t_map_info *info)

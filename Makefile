@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 18:38:57 by seohyeki          #+#    #+#              #
-#    Updated: 2024/04/26 19:36:59 by sumilee          ###   ########.fr        #
+#    Updated: 2024/04/27 00:01:37 by seohyeki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,12 @@ LIBFT_DIR = libft
 MLX = libmlx.a
 MLX_DIR = mlx
 INC_DIR = include
-P_SRCS = parse_info.c init.c
+P_SRCS = parse_info.c \
+		 init.c \
+		 ft_lst_trim.c \
+		 map_parse_utils.c \
+		 map_parse.c \
+		 map_valid_chk.c
 E_SRCS = main.c
 U_SRCS = util.c
 P_OBJS = $(P_SRCS:.c=.o)
@@ -25,8 +30,8 @@ U_OBJS = $(U_SRCS:.c=.o)
 P_DEPS = $(P_SRCS:.c=.d)
 E_DEPS = $(E_SRCS:.c=.d)
 U_DEPS = $(U_SRCS:.c=.d)
-A_OBJS = $(E_OBJS) $(U_OBJS) $(P_OBJS) 
-A_DEPS = $(E_DEPS) $(U_DEPS) $(P_DEPS) 
+A_OBJS = $(P_OBJS) $(E_OBJS) $(U_OBJS)
+A_DEPS = $(P_DEPS) $(E_DEPS) $(U_DEPS)
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
 LIBINC = -lmlx -Lmlx -lft -Llibft -framework OpenGL -framework Appkit
 
