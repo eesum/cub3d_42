@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:31:26 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/30 18:30:01 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/04/30 18:38:07 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,19 @@ void	cal_dda(char **map, t_ray *ray, t_player *player)
 	}
 }
 
-void	cal_walldist(t_ray *ray)
+void	cal_walldist(t_ray *ray, t_player *player)
 {
 	double	diff;
 
-	if (ray->hit_side)
+	if (ray->hit_side == 0)
 	{
-		ray->walldist;
-		
+		diff = ray->map_x - player->pos_x + (1 - ray->step_x) / 2;
+		ray->walldist = diff / ray->raydir_x;	
+	}
+	else
+	{
+		diff = ray->map_y - player->pos_y + (1 - ray->step_y) / 2;
+		ray->walldist = diff / ray->raydir_y;	
 	}
 }
 
@@ -89,8 +94,7 @@ void	ray_loop(char **map, t_mlxdata *mlxdata, t_player *player)
 		ray.raydir_y = player->dir_y + player->plane_y * cam_x;
 		init_step(&ray, player);
 		cal_dda(map, &ray, player);
-		cal_walldist(&ray);
-		cal_hight
+		cal_walldist(&ray, player);
 		i++;
 	}
 
