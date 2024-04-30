@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:22:28 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/26 20:21:34 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/04/30 17:21:44 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,24 +76,75 @@ void	put_image(t_ptr *ptr, void *img, int x, int y) // 나중에 유틸이나 �
 							img, y * IMG_W, x * IMG_H);
 }
 
-void	init_mlx_data(t_ptr *ptr, t_map_info *info, t_img *img, char *program_name)
+void	init_mlx_data(t_mlxdata *mlxdata, char *program_name)
 {
-	ptr->mlx_ptr = mlx_init();
-	if (ptr->mlx_ptr == NULL)
+	mlxdata->ptr.mlx_ptr = mlx_init();
+	if (mlxdata->ptr.mlx_ptr == NULL)
 		error_exit("Mlx init failed.");
-	ptr->win_ptr = mlx_new_window(ptr->mlx_ptr, \
+	mlxdata->ptr.win_ptr = mlx_new_window(mlxdata->ptr.mlx_ptr, \
 									6 * IMG_W, \
 									1 * IMG_H, program_name);
-	if (ptr->win_ptr == NULL)
+	if (mlxdata->ptr.win_ptr == NULL)
 		error_exit("New mlx window creation failed.");
-	info_to_img(ptr, info, img);
+	info_to_img(&mlxdata->ptr, &mlxdata->info, &mlxdata->img);
 	
 	/* 아래는 테스트 용 */
-	put_image(ptr, img->no_img, 0, 0);
-	put_image(ptr, img->so_img, 0, 1);
-	put_image(ptr, img->we_img, 0, 2);
-	put_image(ptr, img->ea_img, 0, 3);
-	put_image(ptr, img->fl_img, 0, 4);
-	put_image(ptr, img->cl_img, 0, 5);
-	mlx_loop(ptr->mlx_ptr);
+	put_image(&mlxdata->ptr, mlxdata->img.no_img, 0, 0);
+	put_image(&mlxdata->ptr, mlxdata->img.so_img, 0, 1);
+	put_image(&mlxdata->ptr, mlxdata->img.we_img, 0, 2);
+	put_image(&mlxdata->ptr, mlxdata->img.ea_img, 0, 3);
+	put_image(&mlxdata->ptr, mlxdata->img.fl_img, 0, 4);
+	put_image(&mlxdata->ptr, mlxdata->img.cl_img, 0, 5);
+	mlx_loop(mlxdata->ptr.mlx_ptr);
+}
+
+char	init_player_info_loop(char **map, t_player *player)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (is_palyer_pos(map[i][j]))
+			{
+				player->pos_x = j;
+				player->pos_y = i;
+				return (map[i][j]);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	init_player_info(char **map, t_player *player)
+{
+	char c;
+
+	ft_memset(player, 0, sizeof(int) * 6);
+	c = init_player_info_loop(map, player);
+	if (c == 'N')
+	{
+		player->dir_y = 1;
+		player->plane_x = 1;
+	}
+	else if (c == 'S')
+	{
+		player->dir_y = -1;
+		player->plane_x = -1;
+	}
+	else if (c == 'E')
+	{
+		player->dir_x = 1;
+		player->plane_y = -1;
+	}
+	else if (c == 'W')
+	{
+		player->dir_x = -1;
+		player->plane_y = 1;
+	}
 }

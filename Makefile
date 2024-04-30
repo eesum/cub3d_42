@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 18:38:57 by seohyeki          #+#    #+#              #
-#    Updated: 2024/04/27 00:01:37 by seohyeki         ###   ########.fr        #
+#    Updated: 2024/04/30 16:21:04 by sumilee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ NAME = cub3D
 LIBFT = libft.a
 LIBFT_DIR = libft
 MLX = libmlx.a
-MLX_DIR = mlx
+MLX_DIR = .mlx
 INC_DIR = include
 P_SRCS = parse_info.c \
 		 init.c \
 		 ft_lst_trim.c \
-		 map_parse_utils.c \
-		 map_parse.c \
+		 parse_map_utils.c \
+		 parsemap_.c \
 		 map_valid_chk.c
 E_SRCS = main.c
 U_SRCS = util.c

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:36 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/29 20:25:18 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:15:13 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "util.h"
 
-int	check_argv(int argc, char **argv)
+void	parsing(int argc, char **argv, t_map_info *info, char ***map)
 {
 	int len;
 	int fd;
@@ -26,7 +26,8 @@ int	check_argv(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		error_exit("Can't open file.");
-	return (fd);
+	parse_map_info(fd, info);
+	parse_map(fd, map);
 }
 
 static void	init_info(t_map_info *info)
