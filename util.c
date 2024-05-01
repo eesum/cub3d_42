@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:50:33 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/27 00:04:05 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/01 19:27:57 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "util.h"
+#include "type.h"
 
 void	error_exit(char *msg)
 {
@@ -108,4 +109,10 @@ void	free_arr(char **arr)
 		i++;
 	}
 	free(arr);
+}
+
+int	win_close(t_ptr *ptr)
+{
+	mlx_destroy_window(ptr->mlx_ptr, ptr->win_ptr);
+	exit(EXIT_SUCCESS);
 }

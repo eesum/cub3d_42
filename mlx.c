@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 19:05:25 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/05/01 19:35:31 by sumilee          ###   ########.fr       */
+/*   Created: 2024/05/01 19:29:54 by sumilee           #+#    #+#             */
+/*   Updated: 2024/05/01 19:34:13 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "ray.h"
 #include "type.h"
 #include "util.h"
 
-int	main(int argc, char **argv)
+
+int	key_hook(int key, t_mlxdata *data)
 {
-	t_mlxdata	mlxdata;
-	t_player	player;
-	char		**map;
+	if (key == KEY_ESC)
+		win_close(&data->ptr);
+	else if (key == KEY_W)
+	{
 
-	map = NULL;
-	parsing(argc, argv, &mlxdata.info, &map);
-	init_player_info(map, &player);
-	init_mlx_data(&mlxdata, &argv[0][2]);
-	ray_loop(map, &mlxdata, &player);
-	mlx_hook(mlxdata.ptr.win_ptr, 17, 0, win_close, &mlxdata.ptr);
-	mlx_key_hook(mlxdata.ptr.win_ptr, key_hook, &mlxdata);
-	mlx_loop(mlxdata.ptr.mlx_ptr);
+	}
+	else if (key == KEY_A)
+	{
 
-	//전체 free
+	}
+	else if (key == KEY_S)
+	{
+
+	}
+	else if (key == KEY_D)
+	{
+
+	}
 	return (0);
 }

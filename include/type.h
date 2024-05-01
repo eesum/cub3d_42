@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 17:11:20 by sumilee           #+#    #+#             */
-/*   Updated: 2024/04/30 18:02:35 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/01 19:32:09 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 # define IMG_W 32
 # define WIN_W 2000
 # define WIN_H 1000
+# define BUTTON_DESTROY 17
+# define KEY_ESC 53
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_UP 126
+# define KEY_DO 125
+# define KEY_LE 123
+# define KEY_RI 124
 
 typedef struct s_ptr	//추후 다른 헤더로 이동 가능
 {
