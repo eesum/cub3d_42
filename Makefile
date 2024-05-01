@@ -6,7 +6,7 @@
 #    By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 18:38:57 by seohyeki          #+#    #+#              #
-#    Updated: 2024/04/30 16:21:04 by sumilee          ###   ########.fr        #
+#    Updated: 2024/05/01 19:22:27 by sumilee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ LIBFT_DIR = libft
 MLX = libmlx.a
 MLX_DIR = .mlx
 INC_DIR = include
-P_SRCS = parse_info.c \
-		 init.c \
-		 ft_lst_trim.c \
-		 parse_map_utils.c \
-		 parsemap_.c \
-		 map_valid_chk.c
-E_SRCS = main.c
+P_SRCS = parse/parse_info.c \ 
+		 parse/ft_lst_trim.c \
+		 parse/parse_map_utils.c \
+		 parse/parsemap_.c \
+		 parse/map_valid_chk.c
+E_SRCS = main.c \
+		 init.c
 U_SRCS = util.c
 P_OBJS = $(P_SRCS:.c=.o)
 E_OBJS = $(E_SRCS:.c=.o)
