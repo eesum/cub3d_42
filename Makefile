@@ -6,7 +6,7 @@
 #    By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 18:38:57 by seohyeki          #+#    #+#              #
-#    Updated: 2024/05/01 19:22:27 by sumilee          ###   ########.fr        #
+#    Updated: 2024/05/02 01:49:28 by sumilee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,15 @@ LIBFT_DIR = libft
 MLX = libmlx.a
 MLX_DIR = .mlx
 INC_DIR = include
-P_SRCS = parse/parse_info.c \ 
+P_SRCS = parse/parse_info.c \
 		 parse/ft_lst_trim.c \
 		 parse/parse_map_utils.c \
-		 parse/parsemap_.c \
-		 parse/map_valid_chk.c
+		 parse/parse_map.c \
+		 parse/map_valid_check.c
 E_SRCS = main.c \
-		 init.c
+		 init.c \
+		 raycasting.c \
+		 mlx.c
 U_SRCS = util.c
 P_OBJS = $(P_SRCS:.c=.o)
 E_OBJS = $(E_SRCS:.c=.o)
@@ -33,7 +35,7 @@ U_DEPS = $(U_SRCS:.c=.d)
 A_OBJS = $(P_OBJS) $(E_OBJS) $(U_OBJS)
 A_DEPS = $(P_DEPS) $(E_DEPS) $(U_DEPS)
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
-LIBINC = -lmlx -Lmlx -lft -Llibft -framework OpenGL -framework Appkit
+LIBINC = -lmlx -L$(MLX_DIR) -lft -L$(LIBFT_DIR) -framework OpenGL -framework Appkit
 
 all : $(NAME)
 
