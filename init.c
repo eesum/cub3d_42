@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:22:28 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 03:00:30 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 15:13:46 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,6 @@ static void	info_to_img(t_ptr *ptr, t_map_info *info, t_img *img)
 
 void	init_mlx_data(t_mlxdata *mlxdata, char *program_name)
 {
-	int	i;
-	int	j;
-
 	mlxdata->ptr.mlx_ptr = mlx_init();
 	if (mlxdata->ptr.mlx_ptr == NULL)
 		error_exit("Mlx init failed.");
@@ -79,20 +76,6 @@ void	init_mlx_data(t_mlxdata *mlxdata, char *program_name)
 	if (mlxdata->ptr.win_ptr == NULL)
 		error_exit("New mlx window creation failed.");
 	info_to_img(&mlxdata->ptr, &mlxdata->info, &mlxdata->img);
-	i = 0;
-	while (i < WIN_H / IMG_H)
-	{
-		j = 0;
-		while (j < WIN_W / IMG_W)
-		{
-			if (i < (WIN_H / IMG_H) / 2)
-				put_image(&mlxdata->ptr, mlxdata->img.cl_img, i * IMG_H, j * IMG_W);
-			else
-				put_image(&mlxdata->ptr, mlxdata->img.fl_img, i * IMG_H, j * IMG_W);
-			j++;
-		}
-		i++;
-	}
 }
 
 char	init_player_info_loop(char **map, t_player *player)
@@ -108,8 +91,8 @@ char	init_player_info_loop(char **map, t_player *player)
 		{
 			if (is_palyer_pos(map[i][j]))
 			{
-				player->pos_x = j;
-				player->pos_y = i;
+				player->pos_x = j + 0.5;
+				player->pos_y = i + 0.5;
 				return (map[i][j]);
 			}
 			j++;
@@ -127,13 +110,13 @@ void	init_player_info(char **map, t_player *player)
 	c = init_player_info_loop(map, player);
 	if (c == 'N')
 	{
-		player->dir_y = 1;
-		player->plane_x = PLANE;
+		player->dir_y = -1;
+		player->plane_x = -1 * PLANE;
 	}
 	else if (c == 'S')
 	{
-		player->dir_y = -1;
-		player->plane_x = -1 * PLANE;
+		player->dir_y = 1;
+		player->plane_x = PLANE;
 	}
 	else if (c == 'E')
 	{

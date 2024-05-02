@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:31:26 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 14:40:12 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:55:56 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	cal_walldist(t_ray *ray, t_player *player)
 		diff = ray->map_y - player->pos_y + (1 - ray->step_y) / 2;
 		ray->walldist = diff / ray->raydir_y;
 	}
-	printf("pos: %f, map: %d, iff: %f, dist: %f\n", player->pos_x, ray->map_x, diff, ray->walldist);
+	//printf("pos: %f, map: %d, iff: %f, dist: %f\n", player->pos_x, ray->map_x, diff, ray->walldist);
 }
 
 void	cal_wallx(t_ray *ray, t_player *player)
