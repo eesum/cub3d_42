@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:31:26 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 11:44:07 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 14:40:12 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,22 @@ void	init_step(t_ray *ray, t_player *player)
 	if (ray->raydir_x >= 0)
 	{
 		ray->step_x = 1;
-		ray->side_x = (player->pos_x - ray->map_x) * ray->delta_x;
+		ray->side_x = (ray->map_x + 1 - player->pos_x) * ray->delta_x;
 	}
 	else
 	{
 	 	ray->step_x = -1;
-		ray->side_x = (ray->map_x + 1 - player->pos_x) * ray->delta_x;
+		ray->side_x = (player->pos_x - ray->map_x) * ray->delta_x;
 	}
 	if (ray->raydir_y >= 0)
 	{
 		ray->step_y = 1;
-		ray->side_y = (player->pos_y - ray->map_y) * ray->delta_y;
+		ray->side_y = (ray->map_y + 1 - player->pos_y) * ray->delta_y;
 	}
 	else
 	{
 		ray->step_y = -1;
-		ray->side_y = (ray->map_y + 1 - player->pos_y) * ray->delta_y;
+		ray->side_y = (player->pos_y - ray->map_y) * ray->delta_y;
 	}
 }
 
@@ -69,7 +69,7 @@ void	cal_dda(char **map, t_ray *ray)
 		if (map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
-	// printf("hit! x: %d, y: %d\n", ray->map_x, ray->map_y);
+	printf("hit:%d, x: %d, y: %d\n", ray->hit_side, ray->map_x, ray->map_y);
 }
 
 void	cal_walldist(t_ray *ray, t_player *player)
@@ -86,7 +86,7 @@ void	cal_walldist(t_ray *ray, t_player *player)
 		diff = ray->map_y - player->pos_y + (1 - ray->step_y) / 2;
 		ray->walldist = diff / ray->raydir_y;
 	}
-	// printf("dist: %f\n", ray->walldist);
+	printf("pos: %f, map: %d, iff: %f, dist: %f\n", player->pos_x, ray->map_x, diff, ray->walldist);
 }
 
 void	cal_wallx(t_ray *ray, t_player *player)
@@ -128,8 +128,8 @@ void	cal_wallheight(t_ray *ray)
 		ray->draw_start = WIN_H / 2 - ray->height / 2;
 		ray->draw_end = WIN_H / 2 + ray->height / 2;
 	}
-
-	// printf("x:%f, y:%f, height: %d, start: %d, end: %d\n", ray->height, ray->draw_start, ray->draw_end);
+	// if (ray->raydir_x < 0)
+		printf("x:%f, y:%f, height: %d, start: %d, end: %d\n", ray->raydir_x, ray->raydir_y, ray->height, ray->draw_start, ray->draw_end);
 	// printf("height: %d, start: %d, end: %d\n", ray->height, ray->draw_start, ray->draw_end);
 }
 
@@ -163,8 +163,10 @@ void	draw_line(int line, t_mlxdata *mlxdata, t_ray *ray, t_render *render)
 	while (i < WIN_H)
 	{
 		pixel = render->addr + (i * render->size_line) + (line * render->bits_per_pixel / 8);
-		if (i < ray->draw_start || i > ray->draw_end)
-			*(int *)pixel = 0xFFFFFFFF;
+		if (i < ray->draw_start)
+			*(int *)pixel = mlxdata->info.cl_color;
+		else if (i > ray->draw_end)
+			*(int *)pixel = mlxdata->info.fl_color;
 		else
 		{
 			color = get_color_from_texture(mlxdata, ray, (int)ray->texture_x, i);
