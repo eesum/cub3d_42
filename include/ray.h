@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:27:00 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 21:20:36 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:17:04 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	ray_loop(char **map, t_mlxdata *mlxdata, t_player *player);
 
-void	init_screen(t_render *render, t_mlxdata *mlxdata);
-void	draw_line(int line, t_mlxdata *mlxdata, t_ray *ray, t_render *render);
+void	init_screen(t_render *screen, t_ptr *ptr);
+void	draw_line(int line, t_img *img, t_ray *ray, t_render *render);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 18:38:57 by seohyeki          #+#    #+#              #
-#    Updated: 2024/05/02 21:36:46 by sumilee          ###   ########.fr        #
+#    Updated: 2024/05/02 22:24:26 by sumilee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ P_SRCS = parse/parsing.c \
 		 parse/parse_map_utils.c \
 		 parse/parse_map.c \
 		 parse/map_valid_check.c \
-		 parse/init.c
+		 parse/init.c \
+		 parse/info_to_img.c
 E_SRCS = main.c \
 		 raycasting.c \
 		 rendering.c \

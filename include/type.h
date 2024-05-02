@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 17:11:20 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 21:22:31 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:22:07 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TYPE_H
 
 # define PLANE 1
-# define IMG_H 500 //추후 다른 헤더로 이동 가능
+# define IMG_H 500
 # define IMG_W 500
 # define WIN_W 1984
 # define WIN_H 1024
@@ -31,7 +31,7 @@
 # define KEY_LE 123
 # define KEY_RI 124
 
-typedef struct s_ptr	//추후 다른 헤더로 이동 가능
+typedef struct s_ptr
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -54,26 +54,24 @@ typedef struct s_map_info
 	char	*east;
 	char	*floor;
 	char	*ceiling;
-	int		fl_color;
-	int		cl_color;
 }				t_map_info;
 
 typedef struct s_img
 {
 	int		img_h;
 	int		img_w;
-	void	*img[4];
-	// void	*fl_img;
-	// void	*cl_img;
+	void	*texture[4];
+	int		fl_color;
+	int		cl_color;
 }				t_img;
 
 typedef struct s_player
 {
-	double	pos_x; //player start pos
+	double	pos_x;
 	double	pos_y;
-	double	dir_x; //player 초기 방향
+	double	dir_x;
 	double	dir_y;
-	double	plane_x; //camera plane
+	double	plane_x;
 	double	plane_y;
 }				t_player;
 
@@ -81,7 +79,6 @@ typedef struct s_mlxdata
 {
 	t_ptr	ptr;
 	t_img	img;
-	t_map_info	info;
 	t_player	player;
 	char	**map;
 	int	key_flag[6];
@@ -89,19 +86,18 @@ typedef struct s_mlxdata
 
 typedef struct s_ray
 {
-	int		map_x; //pos_x, pos_y 정수값
+	int		map_x;
 	int		map_y;
-	double	raydir_x; //광선의 방향벡터
+	double	raydir_x;
 	double	raydir_y;
-	double	step_x; //what direction to step
+	double	step_x;
 	double	step_y;
-	double	side_x; //current position to next x or y-side
+	double	side_x;
 	double	side_y;
-	double	delta_x; //one x or y-side to next x or y-side
+	double	delta_x;
 	double	delta_y;
-	int		hit; //벽에 맞았는지
-	int		hit_side; //어느쪽 벽에 맞았는지
-	double	walldist; //카메라평면에 수직으로 그은 거리
+	int		hit_side;
+	double	wall_dist;
 	int		wall_type;
 	double	texture_x;
 	int		height;

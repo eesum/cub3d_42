@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:34:34 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 21:36:08 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:05:01 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int		is_not_element(char *str, int *player_flag);
 /*init data*/
 void	init_player_info(char **map, t_player *player);
 void	init_mlx_data(t_mlxdata *mlxdata, char *program_name);
+void	info_to_img(t_ptr *ptr, t_map_info *info, t_img *img);
 
 #endif

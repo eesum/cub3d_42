@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:22:28 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 21:25:40 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:06:42 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,6 @@ void	init_player_info(char **map, t_player *player)
 	}
 }
 
-static void	info_to_img(t_ptr *ptr, t_map_info *info, t_img *img)
-{
-	img->img_h = IMG_H;
-	img->img_w = IMG_W;
-	img->img[WALL_NO] = mlx_xpm_file_to_image(ptr->mlx_ptr, info->north, \
-									&img->img_w, &img->img_h);
-	img->img[WALL_SO] = mlx_xpm_file_to_image(ptr->mlx_ptr, info->south, \
-									&img->img_w, &img->img_h);
-	img->img[WALL_WE] = mlx_xpm_file_to_image(ptr->mlx_ptr, info->west, \
-									&img->img_w, &img->img_h);
-	img->img[WALL_EA] = mlx_xpm_file_to_image(ptr->mlx_ptr, info->east, \
-									&img->img_w, &img->img_h);
-	if (img->img[0] == NULL || img->img[1] == NULL || \
-		img->img[2] == NULL || img->img[3] == NULL)
-		error_exit("Graphic image error.");
-}
-
 void	init_mlx_data(t_mlxdata *mlxdata, char *program_name)
 {
 	mlxdata->ptr.mlx_ptr = mlx_init();
@@ -92,6 +75,5 @@ void	init_mlx_data(t_mlxdata *mlxdata, char *program_name)
 									WIN_W, WIN_H, program_name);
 	if (mlxdata->ptr.win_ptr == NULL)
 		error_exit("New mlx window creation failed.");
-	info_to_img(&mlxdata->ptr, &mlxdata->info, &mlxdata->img);
 	ft_memset(mlxdata->key_flag, 0, sizeof(int) * 6);
 }

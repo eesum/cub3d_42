@@ -6,35 +6,34 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 21:16:19 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 21:18:02 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:22:31 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
-#include "type.h"
 #include "util.h"
 #include "mlx.h"
 
-void	init_screen(t_render *render, t_mlxdata *mlxdata)
+void	init_screen(t_render *screen, t_ptr *ptr)
 {
-	render->img = mlx_new_image(mlxdata->ptr.mlx_ptr, WIN_W, WIN_H);
-	if (render->img == NULL)
+	screen->img = mlx_new_image(ptr->mlx_ptr, WIN_W, WIN_H);
+	if (screen->img == NULL)
 		error_exit("Mlx error.");
-	render->addr = mlx_get_data_addr(render->img, \
-									&render->bits_per_pixel, \
-									&render->size_line, \
-									&render->endian);
-	if (render->addr == NULL)
+	screen->addr = mlx_get_data_addr(screen->img, \
+									&screen->bits_per_pixel, \
+									&screen->size_line, \
+									&screen->endian);
+	if (screen->addr == NULL)
 		error_exit("Mlx error.");
 }
 
-static int	get_color_from_texture(t_mlxdata *data, t_ray *ray, int x, int y)
+static int	get_color_from_texture(void **img, t_ray *ray, int x, int y)
 {
 	int	color;
 	int	*addr;
 	t_render	texture;
 
-	texture.addr = mlx_get_data_addr(data->img.img[ray->wall_type], &texture.bits_per_pixel, &texture.size_line, &texture.endian);
+	texture.addr = mlx_get_data_addr(img[ray->wall_type], &texture.bits_per_pixel, &texture.size_line, &texture.endian);
 	if (texture.addr == NULL)
 		error_exit("Mlx error.");
 	addr = (int *)texture.addr;
@@ -47,7 +46,7 @@ static int	get_color_from_texture(t_mlxdata *data, t_ray *ray, int x, int y)
 	return (color);
 }
 
-void	draw_line(int line, t_mlxdata *mlxdata, t_ray *ray, t_render *render)
+void	draw_line(int line, t_img *img, t_ray *ray, t_render *screen)
 {
 	int	color;
 	int i;
@@ -56,14 +55,14 @@ void	draw_line(int line, t_mlxdata *mlxdata, t_ray *ray, t_render *render)
 	i = 0;
 	while (i < WIN_H)
 	{
-		pixel = render->addr + (i * render->size_line) + (line * render->bits_per_pixel / 8);
+		pixel = screen->addr + (i * screen->size_line) + (line * screen->bits_per_pixel / 8);
 		if (i < ray->draw_start)
-			*(int *)pixel = mlxdata->info.cl_color;
+			*(int *)pixel = img->cl_color;
 		else if (i > ray->draw_end)
-			*(int *)pixel = mlxdata->info.fl_color;
+			*(int *)pixel = img->fl_color;
 		else
 		{
-			color = get_color_from_texture(mlxdata, ray, (int)ray->texture_x, i);
+			color = get_color_from_texture(img->texture, ray, (int)ray->texture_x, i);
 			*(int *)pixel = color;
 		}
 		i++;

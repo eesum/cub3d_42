@@ -6,12 +6,11 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:31:26 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 21:20:30 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:17:17 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
-#include "type.h"
 #include "util.h"
 #include "mlx.h"
 #include <math.h>
@@ -22,7 +21,6 @@ static void	init_step(t_ray *ray, t_player *player)
 	ray->map_y = (int)(player->pos_y);
 	ray->delta_x = fabs(1 / ray->raydir_x);
 	ray->delta_y = fabs(1 / ray->raydir_y);
-	ray->hit = 0;
 	if (ray->raydir_x >= 0)
 	{
 		ray->step_x = 1;
@@ -47,7 +45,10 @@ static void	init_step(t_ray *ray, t_player *player)
 
 static void	calculate_dda(char **map, t_ray *ray)
 {
-	while (ray->hit == 0)
+	int	hit;
+
+	hit = 0;
+	while (hit == 0)
 	{
 		if (ray->side_x < ray->side_y)
 		{
@@ -62,7 +63,7 @@ static void	calculate_dda(char **map, t_ray *ray)
 			ray->hit_side = 1;
 		}
 		if (map[ray->map_y][ray->map_x] == '1')
-			ray->hit = 1;
+			hit = 1;
 	}
 }
 
@@ -73,12 +74,12 @@ static void	calculate_wall_dist(t_ray *ray, t_player *player)
 	if (ray->hit_side == 0)
 	{
 		diff = ray->map_x - player->pos_x + (1 - ray->step_x) / 2;
-		ray->walldist = diff / ray->raydir_x;
+		ray->wall_dist = diff / ray->raydir_x;
 	}
 	else
 	{
 		diff = ray->map_y - player->pos_y + (1 - ray->step_y) / 2;
-		ray->walldist = diff / ray->raydir_y;
+		ray->wall_dist = diff / ray->raydir_y;
 	}
 }
 
@@ -87,9 +88,9 @@ static void	calculate_wall_x(t_ray *ray, t_player *player)
 	double	wall_x;
 
 	if (ray->hit_side == 0)
-		wall_x = player->pos_y + ray->walldist * ray->raydir_y;
+		wall_x = player->pos_y + ray->wall_dist * ray->raydir_y;
 	else
-		wall_x = player->pos_x + ray->walldist * ray->raydir_x;
+		wall_x = player->pos_x + ray->wall_dist * ray->raydir_x;
 	wall_x -= floor(wall_x);
 	ray->texture_x = (int) (wall_x * (double) IMG_W);
 	if (ray->raydir_y < 0 && ray->hit_side == 1)
@@ -110,7 +111,7 @@ static void	calculate_wall_x(t_ray *ray, t_player *player)
 
 static void	calculate_wall_height(t_ray *ray)
 {
-	ray->height = (int) (WIN_H / ray->walldist);
+	ray->height = (int) (WIN_H / ray->wall_dist);
 	if (ray->height > WIN_H)
 	{
 		ray->draw_start = 0;
@@ -126,11 +127,11 @@ static void	calculate_wall_height(t_ray *ray)
 void	ray_loop(char **map, t_mlxdata *mlxdata, t_player *player)
 {
 	t_ray	ray;
-	t_render	render;
+	t_render	screen;
 	int	i;
 	double cam_x;
 
-	init_screen(&render, mlxdata);
+	init_screen(&screen, &mlxdata->ptr);
 	i = 0;
 	while (i < WIN_W)
 	{
@@ -142,10 +143,10 @@ void	ray_loop(char **map, t_mlxdata *mlxdata, t_player *player)
 		calculate_wall_dist(&ray, player);
 		calculate_wall_x(&ray, player);
 		calculate_wall_height(&ray);
-		draw_line(i, mlxdata, &ray, &render);
+		draw_line(i, &mlxdata->img, &ray, &screen);
 		i++;
 	}
-	put_image(&mlxdata->ptr, render.img, 0, 0);
-	mlx_destroy_image(mlxdata->ptr.mlx_ptr, render.img);
+	put_image(&mlxdata->ptr, screen.img, 0, 0);
+	mlx_destroy_image(mlxdata->ptr.mlx_ptr, screen.img);
 }
 

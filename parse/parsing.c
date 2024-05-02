@@ -6,12 +6,11 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 21:27:17 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 21:38:21 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:05:10 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-#include "type.h"
 #include "util.h"
 #include <fcntl.h>
 
@@ -19,6 +18,7 @@ void	parsing(int argc, char **argv, t_mlxdata *mlxdata)
 {
 	int len;
 	int fd;
+	t_map_info	info;
 
 	if (argc != 2)
 		error_exit("Wrong number of argument(s).");
@@ -28,8 +28,9 @@ void	parsing(int argc, char **argv, t_mlxdata *mlxdata)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		error_exit("Can't open file.");
-	parse_map_info(fd, &mlxdata->info);
+	parse_map_info(fd, &info);
 	parse_map(fd, &mlxdata->map);
 	init_player_info(mlxdata->map, &mlxdata->player);
 	init_mlx_data(mlxdata, &argv[0][2]);
+	info_to_img(&mlxdata->ptr, &info, &mlxdata->img);
 }

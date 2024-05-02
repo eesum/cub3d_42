@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:36 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 21:31:22 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:02:04 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,52 +37,6 @@ static int	find_n_save(char **split, t_map_info *info, int *cnt)
 	return (0);
 }
 
-static void	count_comma(char *code)
-{
-	int	i;
-	int cnt;
-
-	i = 0;
-	cnt = 0;
-	while (code[i])
-	{
-		if (code[i] == ',')
-			cnt++;
-		i++;
-	}
-	if (cnt != 2)
-		error_exit("Wrong color information.");
-}
-
-static void	convert_color(char *code, int *color)
-{
-	char **split;
-	int temp;
-	int result;
-	int	i;
-
-	count_comma(code);
-	split = ft_split(code, ',');
-	if (split == NULL) 
-		error_exit("Malloc failed.");
-	if (split[0] == NULL)
-		error_exit("Wrong color information.");
-	i = 0;
-	result = 0;
-	while (i < 3 && split[i])
-	{
-		temp = ft_atoi_err(split[i]);
-		if (temp > 255)
-			error_exit("Wrong color information.");
-		result |= temp << ((2 - i) * 8);
-		i++;
-	}
-	if (i != 3 || split[i] != NULL)
-		error_exit("Wrong color information.");
-	*color = result;
-	free_arr(split);
-}
-
 void	parse_map_info(int fd, t_map_info *info)
 {
 	char *buff;
@@ -106,6 +60,4 @@ void	parse_map_info(int fd, t_map_info *info)
 	}
 	if (cnt != 6)
 		error_exit("Wrong graphic information.");
-	convert_color(info->floor, &info->fl_color);
-	convert_color(info->ceiling, &info->cl_color);
 }
