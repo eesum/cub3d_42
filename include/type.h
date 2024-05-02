@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 17:11:20 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 17:55:48 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:03:23 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,9 @@ typedef struct s_img
 	int		img_h;
 	int		img_w;
 	void	*img[4];
-	// void	*no_img;
-	// void	*so_img;
-	// void	*we_img;
-	// void	*ea_img;
 	void	*fl_img;
 	void	*cl_img;
 }				t_img;
-
-typedef struct s_mlxdata
-{
-	t_ptr	ptr;
-	t_img	img;
-	t_map_info	info;
-}				t_mlxdata;
 
 typedef struct s_player
 {
@@ -87,6 +76,16 @@ typedef struct s_player
 	double	plane_x; //camera plane
 	double	plane_y;
 }				t_player;
+
+typedef struct s_mlxdata
+{
+	t_ptr	ptr;
+	t_img	img;
+	t_map_info	info;
+	t_player	player;
+	char	**map;
+	int	key_flag[6];
+}				t_mlxdata;
 
 typedef struct s_ray
 {

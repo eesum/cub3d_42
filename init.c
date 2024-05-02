@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:22:28 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 17:32:30 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/02 19:50:59 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	init_mlx_data(t_mlxdata *mlxdata, char *program_name)
 	if (mlxdata->ptr.win_ptr == NULL)
 		error_exit("New mlx window creation failed.");
 	info_to_img(&mlxdata->ptr, &mlxdata->info, &mlxdata->img);
+	ft_memset(mlxdata->key_flag, 0, sizeof(int) * 6);
 }
 
 char	init_player_info_loop(char **map, t_player *player)

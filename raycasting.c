@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:31:26 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 18:30:03 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 18:46:07 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,6 @@ void	ray_loop(char **map, t_mlxdata *mlxdata, t_player *player)
 		i++;
 	}
 	put_image(&mlxdata->ptr, render.img, 0, 0);
-
-
+	mlx_destroy_image(mlxdata->ptr.mlx_ptr, render.img);
 }
 
