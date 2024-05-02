@@ -6,12 +6,11 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 19:29:54 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 21:20:55 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:07:22 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
-#include "type.h"
 #include "util.h"
 #include <math.h>
 

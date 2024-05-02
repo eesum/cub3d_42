@@ -6,12 +6,11 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:50:33 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 01:46:48 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:26:19 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "util.h"
-#include "type.h"
 #include "mlx.h"
 
 void	error_exit(char *msg)
@@ -118,7 +117,7 @@ int	win_close(t_ptr *ptr)
 	exit(EXIT_SUCCESS);
 }
 
-void	put_image(t_ptr *ptr, void *img, int h, int w) // 나중에 유틸이나 다른곳으로 옮겨야할듯. 일단 테스트용
+void	put_image(t_ptr *ptr, void *img, int h, int w)
 {
 	mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, \
 							img, w, h);

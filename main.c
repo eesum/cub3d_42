@@ -6,11 +6,10 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 19:05:25 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/05/02 21:40:51 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 22:07:04 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "type.h"
 #include "parse.h"
 #include "ray.h"
 #include "util.h"
