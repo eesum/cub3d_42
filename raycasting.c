@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:31:26 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 17:59:26 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:30:03 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	cal_dda(char **map, t_ray *ray)
 		if (map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
-	// printf("hit:%d, x: %d, y: %d\n", ray->hit_side, ray->map_x, ray->map_y);
 }
 
 void	cal_walldist(t_ray *ray, t_player *player)
@@ -86,7 +85,6 @@ void	cal_walldist(t_ray *ray, t_player *player)
 		diff = ray->map_y - player->pos_y + (1 - ray->step_y) / 2;
 		ray->walldist = diff / ray->raydir_y;
 	}
-	//printf("pos: %f, map: %d, iff: %f, dist: %f\n", player->pos_x, ray->map_x, diff, ray->walldist);
 }
 
 void	cal_wallx(t_ray *ray, t_player *player)
@@ -128,9 +126,6 @@ void	cal_wallheight(t_ray *ray)
 		ray->draw_start = WIN_H / 2 - ray->height / 2;
 		ray->draw_end = WIN_H / 2 + ray->height / 2;
 	}
-	// if (ray->raydir_x < 0)
-		// printf("x:%f, y:%f, height: %d, start: %d, end: %d\n", ray->raydir_x, ray->raydir_y, ray->height, ray->draw_start, ray->draw_end);
-	// printf("height: %d, start: %d, end: %d\n", ray->height, ray->draw_start, ray->draw_end);
 }
 
 int	get_color_from_texture(t_mlxdata *data, t_ray *ray, int x, int y)
@@ -143,16 +138,12 @@ int	get_color_from_texture(t_mlxdata *data, t_ray *ray, int x, int y)
 	if (texture.addr == NULL)
 		error_exit("Mlx error.");
 	addr = (int *)texture.addr;
-	//printf("y: %d, height: %d, WIN_H: 1024\n", y, ray->height);
 	if (ray->height > WIN_H)
 		y += (ray->height - WIN_H) / 2;
 	else
 		y -= (WIN_H - ray->height) / 2;
-	//printf("y: %d, IMG/height: %d\n", y, IMG_H/ray->height);
 	y = y * (IMG_H - 1) / ray->height;
-	//printf("y: %d\n", y);
 	color = *(addr + y * texture.size_line / 4 + x);
-	printf("addr: %p, y: %d, x: %d, color: %x\n\n", addr, y, x, color);
 	return (color);
 }
 
@@ -200,14 +191,12 @@ void	ray_loop(char **map, t_mlxdata *mlxdata, t_player *player)
 		cam_x = 2 * i / (double)WIN_W - 1;
 		ray.raydir_x = player->dir_x + player->plane_x * cam_x;
 		ray.raydir_y = player->dir_y + player->plane_y * cam_x;
-		// printf("cam: %f, rayx: %f, rayy: %f\n", cam_x, ray.raydir_x, ray.raydir_y);
 		init_step(&ray, player);
 		cal_dda(map, &ray);
 		cal_walldist(&ray, player);
 		cal_wallx(&ray, player);
 		cal_wallheight(&ray);
 		draw_line(i, mlxdata, &ray, &render);
-		printf("===============================\n\n");
 		i++;
 	}
 	put_image(&mlxdata->ptr, render.img, 0, 0);
@@ -215,4 +204,3 @@ void	ray_loop(char **map, t_mlxdata *mlxdata, t_player *player)
 
 }
 
-	// printf("hi map_y: %d, map_x: %d, map: %c\n", ray->map_y, ray->map_x, map[ray->map_y][ray->map_x]);
