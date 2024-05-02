@@ -1,8 +1,8 @@
-NO ./texture/n_texture.xpm
-SO ./texture/s_texture.xpm
-WE ./texture/w_texture.xpm
+NO ./texture/n_texture_g.xpm
+SO ./texture/s_texture_g.xpm
+WE ./texture/w_texture_g.xpm
 
-EA    ./texture/e_texture.xpm
+EA    ./texture/e_texture_g.xpm
 
 
 F 56,56,56

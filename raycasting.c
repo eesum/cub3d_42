@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:31:26 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 03:22:00 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 11:44:07 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,19 @@ void	cal_wallx(t_ray *ray, t_player *player)
 
 void	cal_wallheight(t_ray *ray)
 {
-	ray->height = (int) WIN_H / ray->walldist;
-	ray->draw_start = WIN_H / 2 - ray->height / 2;
-	if (ray->draw_start < 0)
+	ray->height = (int) (WIN_H / ray->walldist) / 2;
+	if (ray->height > WIN_H)
+	{
 		ray->draw_start = 0;
-	ray->draw_end = WIN_H / 2 + ray->height / 2;
-	if (ray->draw_end > WIN_H)
 		ray->draw_end = WIN_H - 1;
+	}
+	else
+	{
+		ray->draw_start = WIN_H / 2 - ray->height / 2;
+		ray->draw_end = WIN_H / 2 + ray->height / 2;
+	}
 
+	// printf("x:%f, y:%f, height: %d, start: %d, end: %d\n", ray->height, ray->draw_start, ray->draw_end);
 	// printf("height: %d, start: %d, end: %d\n", ray->height, ray->draw_start, ray->draw_end);
 }
 
@@ -142,8 +147,8 @@ int	get_color_from_texture(t_mlxdata *data, t_ray *ray, int x, int y)
 		y += (ray->height - WIN_H) / 2;
 	else
 		y -= (WIN_H - ray->height) / 2;
-	y *= IMG_H / ray->height;
-	color = *(addr + y * IMG_W + x);
+	y *= (IMG_H / ray->height);
+	color = *(addr + y * texture.size_line + x * texture.bits_per_pixel / 8);
 	return (color);
 }
 
