@@ -6,22 +6,12 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:36 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/01 19:20:48 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 21:31:22 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "util.h"
-
-static void	init_info(t_map_info *info)
-{
-	info->north = NULL;
-	info->south = NULL;
-	info->east = NULL;
-	info->west = NULL;
-	info->floor = NULL;
-	info->ceiling = NULL;
-}
 
 static int	find_n_save(char **split, t_map_info *info, int *cnt)
 {
@@ -99,7 +89,7 @@ void	parse_map_info(int fd, t_map_info *info)
 	char **split;
 	int	cnt;
 
-	init_info(info);
+	ft_memset(info, 0, sizeof(char *) * 6);
 	cnt = 0;
 	while (cnt < 6)
 	{
@@ -118,21 +108,4 @@ void	parse_map_info(int fd, t_map_info *info)
 		error_exit("Wrong graphic information.");
 	convert_color(info->floor, &info->fl_color);
 	convert_color(info->ceiling, &info->cl_color);
-}
-
-void	parsing(int argc, char **argv, t_map_info *info, char ***map)
-{
-	int len;
-	int fd;
-
-	if (argc != 2)
-		error_exit("Wrong number of argument(s).");
-	len = ft_strlen(argv[1]);
-	if (len < 5 || ft_memcmp(".cub", &argv[1][len - 4], 5) != 0)
-		error_exit("Wrong map file type.");
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		error_exit("Can't open file.");
-	parse_map_info(fd, info);
-	parse_map(fd, map);
 }

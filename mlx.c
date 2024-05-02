@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 19:29:54 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 20:57:51 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 21:20:55 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "util.h"
 #include <math.h>
 
-
-#include <stdio.h>
 int	press_handler(int key, t_mlxdata *data)
 {
 	if (key == KEY_ESC)

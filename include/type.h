@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 17:11:20 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 20:03:23 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 21:22:31 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct s_img
 	int		img_h;
 	int		img_w;
 	void	*img[4];
-	void	*fl_img;
-	void	*cl_img;
+	// void	*fl_img;
+	// void	*cl_img;
 }				t_img;
 
 typedef struct s_player

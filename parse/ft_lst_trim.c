@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_trim.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:57:47 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/04/29 20:24:19 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/02 21:25:50 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "parse.h"
 #include "util.h"
 
