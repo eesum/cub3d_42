@@ -6,16 +6,16 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 17:11:20 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 14:13:30 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:55:48 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPE_H
 # define TYPE_H
 
-# define PLANE 10
-# define IMG_H 32 //추후 다른 헤더로 이동 가능
-# define IMG_W 32
+# define PLANE 1
+# define IMG_H 500 //추후 다른 헤더로 이동 가능
+# define IMG_W 500
 # define WIN_W 1984
 # define WIN_H 1024
 # define WALL_NO 0

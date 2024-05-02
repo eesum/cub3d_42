@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:22:28 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 15:13:46 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:32:30 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,21 +111,21 @@ void	init_player_info(char **map, t_player *player)
 	if (c == 'N')
 	{
 		player->dir_y = -1;
-		player->plane_x = -1 * PLANE;
+		player->plane_x = PLANE;
 	}
 	else if (c == 'S')
 	{
 		player->dir_y = 1;
-		player->plane_x = PLANE;
+		player->plane_x = -1 * PLANE;
 	}
 	else if (c == 'E')
 	{
 		player->dir_x = 1;
-		player->plane_y = -1 * PLANE;
+		player->plane_y = PLANE;
 	}
 	else if (c == 'W')
 	{
 		player->dir_x = -1;
-		player->plane_y = PLANE;
+		player->plane_y = -1 * PLANE;
 	}
 }

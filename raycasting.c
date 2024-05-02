@@ -6,7 +6,7 @@
 /*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:31:26 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 14:55:56 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:59:26 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	cal_dda(char **map, t_ray *ray)
 		if (map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
-	printf("hit:%d, x: %d, y: %d\n", ray->hit_side, ray->map_x, ray->map_y);
+	// printf("hit:%d, x: %d, y: %d\n", ray->hit_side, ray->map_x, ray->map_y);
 }
 
 void	cal_walldist(t_ray *ray, t_player *player)
@@ -99,25 +99,25 @@ void	cal_wallx(t_ray *ray, t_player *player)
 		wall_x = player->pos_x + ray->walldist * ray->raydir_x;
 	wall_x -= floor(wall_x);
 	ray->texture_x = (int) (wall_x * (double) IMG_W);
-	if (ray->raydir_y > 0 && ray->hit_side == 1)
-		ray->wall_type = WALL_NO;
 	if (ray->raydir_y < 0 && ray->hit_side == 1)
+		ray->wall_type = WALL_NO;
+	if (ray->raydir_y > 0 && ray->hit_side == 1)
 	{
 		ray->wall_type = WALL_SO;
 		ray->texture_x = IMG_W - 1 - ray->texture_x;
 	}
 	if (ray->raydir_x < 0 && ray->hit_side == 0)
-		ray->wall_type = WALL_WE;
-	if (ray->raydir_x > 0 && ray->hit_side == 0)
 	{
-		ray->wall_type = WALL_EA;
+		ray->wall_type = WALL_WE;
 		ray->texture_x = IMG_W - 1 - ray->texture_x;
 	}
+	if (ray->raydir_x > 0 && ray->hit_side == 0)
+		ray->wall_type = WALL_EA;
 }
 
 void	cal_wallheight(t_ray *ray)
 {
-	ray->height = (int) (WIN_H / ray->walldist) / 2;
+	ray->height = (int) (WIN_H / ray->walldist);
 	if (ray->height > WIN_H)
 	{
 		ray->draw_start = 0;
@@ -129,7 +129,7 @@ void	cal_wallheight(t_ray *ray)
 		ray->draw_end = WIN_H / 2 + ray->height / 2;
 	}
 	// if (ray->raydir_x < 0)
-		printf("x:%f, y:%f, height: %d, start: %d, end: %d\n", ray->raydir_x, ray->raydir_y, ray->height, ray->draw_start, ray->draw_end);
+		// printf("x:%f, y:%f, height: %d, start: %d, end: %d\n", ray->raydir_x, ray->raydir_y, ray->height, ray->draw_start, ray->draw_end);
 	// printf("height: %d, start: %d, end: %d\n", ray->height, ray->draw_start, ray->draw_end);
 }
 
@@ -143,12 +143,16 @@ int	get_color_from_texture(t_mlxdata *data, t_ray *ray, int x, int y)
 	if (texture.addr == NULL)
 		error_exit("Mlx error.");
 	addr = (int *)texture.addr;
+	//printf("y: %d, height: %d, WIN_H: 1024\n", y, ray->height);
 	if (ray->height > WIN_H)
 		y += (ray->height - WIN_H) / 2;
 	else
 		y -= (WIN_H - ray->height) / 2;
-	y *= (IMG_H / ray->height);
-	color = *(addr + y * texture.size_line + x * texture.bits_per_pixel / 8);
+	//printf("y: %d, IMG/height: %d\n", y, IMG_H/ray->height);
+	y = y * (IMG_H - 1) / ray->height;
+	//printf("y: %d\n", y);
+	color = *(addr + y * texture.size_line / 4 + x);
+	printf("addr: %p, y: %d, x: %d, color: %x\n\n", addr, y, x, color);
 	return (color);
 }
 
@@ -159,7 +163,6 @@ void	draw_line(int line, t_mlxdata *mlxdata, t_ray *ray, t_render *render)
 	char	*pixel;
 
 	i = 0;
-
 	while (i < WIN_H)
 	{
 		pixel = render->addr + (i * render->size_line) + (line * render->bits_per_pixel / 8);
@@ -204,6 +207,7 @@ void	ray_loop(char **map, t_mlxdata *mlxdata, t_player *player)
 		cal_wallx(&ray, player);
 		cal_wallheight(&ray);
 		draw_line(i, mlxdata, &ray, &render);
+		printf("===============================\n\n");
 		i++;
 	}
 	put_image(&mlxdata->ptr, render.img, 0, 0);

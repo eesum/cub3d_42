@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 19:29:54 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/01 19:34:13 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/02 18:01:55 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	key_hook(int key, t_mlxdata *data)
 		win_close(&data->ptr);
 	else if (key == KEY_W)
 	{
-
+		
 	}
 	else if (key == KEY_A)
 	{
@@ -34,5 +34,14 @@ int	key_hook(int key, t_mlxdata *data)
 	{
 
 	}
+	else if (key == KEY_RI)
+	{
+
+	}
+	else if (key == KEY_LE)
+	{
+
+	}
 	return (0);
 }
+
