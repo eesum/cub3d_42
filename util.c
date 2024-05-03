@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:50:33 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 22:26:19 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/03 10:32:28 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "util.h"
-#include "mlx.h"
 
 void	error_exit(char *msg)
 {
@@ -34,42 +33,21 @@ void	*ft_malloc_err(size_t size)
 	return ((void *)ptr);
 }
 
-static char	*ft_strcpy(char *dest, const char *src)
+char	*ft_strdup_err(const char *src)
 {
 	size_t	i;
 	size_t	src_len;
+	char	*dest;
 
-	i = 0;
+	dest = ft_malloc_err(sizeof(char) * (ft_strlen(src) + 1));
 	src_len = ft_strlen(src);
+	i = 0;
 	while (i < src_len + 1)
 	{
 		dest[i] = src[i];
 		i++;
 	}
 	return (dest);
-}
-
-char	*ft_strdup_err(const char *s1)
-{
-	char	*dest;
-
-	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (dest == NULL)
-		error_exit("Malloc failed.");
-	return (ft_strcpy(dest, s1));
-}
-
-void	free_all(char **arg)
-{
-	int i;
-
-	i = 0;
-	while (arg[i])
-	{
-		free(arg[i]);
-		i++;
-	}
-	free(arg);
 }
 
 int	ft_atoi_err(const char *nptr)
@@ -109,16 +87,4 @@ void	free_arr(char **arr)
 		i++;
 	}
 	free(arr);
-}
-
-int	win_close(t_ptr *ptr)
-{
-	mlx_destroy_window(ptr->mlx_ptr, ptr->win_ptr);
-	exit(EXIT_SUCCESS);
-}
-
-void	put_image(t_ptr *ptr, void *img, int h, int w)
-{
-	mlx_put_image_to_window(ptr->mlx_ptr, ptr->win_ptr, \
-							img, w, h);
 }

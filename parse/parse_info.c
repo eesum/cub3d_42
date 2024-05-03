@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:36 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 22:02:04 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/03 10:54:58 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static int	find_n_save(char **split, t_map_info *info, int *cnt)
 
 void	parse_map_info(int fd, t_map_info *info)
 {
-	char *buff;
-	char **split;
-	int	cnt;
+	char	*buff;
+	char	**split;
+	int		cnt;
 
 	ft_memset(info, 0, sizeof(char *) * 6);
 	cnt = 0;

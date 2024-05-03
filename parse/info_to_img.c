@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_color.c                                    :+:      :+:    :+:   */
+/*   info_to_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 21:59:10 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 22:22:52 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/03 10:55:50 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static void	count_comma(char *code)
 {
 	int	i;
-	int cnt;
+	int	cnt;
 
 	i = 0;
 	cnt = 0;
@@ -33,14 +33,14 @@ static void	count_comma(char *code)
 
 static void	convert_color(char *code, int *color)
 {
-	char **split;
-	int temp;
-	int result;
-	int	i;
+	char	**split;
+	int		temp;
+	int		result;
+	int		i;
 
 	count_comma(code);
 	split = ft_split(code, ',');
-	if (split == NULL) 
+	if (split == NULL)
 		error_exit("Malloc failed.");
 	if (split[0] == NULL)
 		error_exit("Wrong color information.");

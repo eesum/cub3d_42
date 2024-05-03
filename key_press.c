@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 19:29:54 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 22:07:22 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/03 11:34:02 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include "type.h"
 #include "util.h"
 #include <math.h>
 
@@ -50,17 +51,25 @@ int	release_handler(int key, t_mlxdata *data)
 	return (0);
 }
 
-void	move(t_player *player, double amount, int direction)
+void	move(char **map, t_player *player, double amount, int direction)
 {
+	double	move_x;
+	double	move_y;
+
 	if (direction == 0)
 	{
-		player->pos_x += player->dir_x * amount;
-		player->pos_y += player->dir_y * amount;
+		move_x = player->pos_x + player->dir_x * amount;
+		move_y = player->pos_y + player->dir_y * amount;
 	}
 	else
 	{
-		player->pos_x += player->dir_y * amount;
-		player->pos_y += player->dir_x * -1 * amount;
+		move_x = player->pos_x + player->dir_y * amount;
+		move_y = player->pos_y + player->dir_x * -1 * amount;
+	}
+	if (map[(int)move_y][(int)move_x] != '1')
+	{
+		player->pos_x = move_x;
+		player->pos_y = move_y;
 	}
 }
 
@@ -81,19 +90,19 @@ void	rotate(t_player *player, double amount)
 
 int	render_screen(t_mlxdata *data)
 {
-	double move_unit;
-	double rotate_unit;
+	double	move_unit;
+	double	rotate_unit;
 
 	move_unit = 0.05;
 	rotate_unit = 0.01;
 	if (data->key_flag[0] == 1)
-		move(&data->player, move_unit, 0);
+		move(data->map, &data->player, move_unit, 0);
 	if (data->key_flag[1] == 1)
-		move(&data->player, move_unit, 1);
+		move(data->map, &data->player, move_unit, 1);
 	if (data->key_flag[2] == 1)
-		move(&data->player, -1 * move_unit, 0);
+		move(data->map, &data->player, -1 * move_unit, 0);
 	if (data->key_flag[3] == 1)
-		move(&data->player, -1 * move_unit, 1);
+		move(data->map, &data->player, -1 * move_unit, 1);
 	if (data->key_flag[4] == 1)
 		rotate(&data->player, rotate_unit);
 	if (data->key_flag[5] == 1)
