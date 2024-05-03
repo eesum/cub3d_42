@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:36 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 10:54:58 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:03:29 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void	parse_map_info(int fd, t_map_info *info)
 		if (split == NULL)
 			error_exit("Malloc failed.");
 		free(buff);
-		if (split[0] != NULL && find_n_save(split, info, &cnt) > 0)
+		if (split[0] == NULL)
+			free(split);
+		if (split[0] && find_n_save(split, info, &cnt) > 0)
 			break ;
 	}
 	if (cnt != 6)

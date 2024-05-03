@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_to_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 21:59:10 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 10:55:50 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:53:19 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,10 @@ void	info_to_img(t_ptr *ptr, t_map_info *info, t_img *img)
 		error_exit("Graphic image error.");
 	convert_color(info->floor, &img->fl_color);
 	convert_color(info->ceiling, &img->cl_color);
+	free(info->north);
+	free(info->south);
+	free(info->west);
+	free(info->east);
+	free(info->floor);
+	free(info->ceiling);
 }
