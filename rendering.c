@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 21:16:19 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 15:45:52 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/03 16:55:01 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,9 @@ void	choose_texture(t_ray *ray)
 	if (ray->raydir_y < 0 && ray->hit_side == 1)
 		ray->wall_type = WALL_NO;
 	if (ray->raydir_y > 0 && ray->hit_side == 1)
-	{
 		ray->wall_type = WALL_SO;
-		ray->texture_x = IMG_W - 1 - ray->texture_x;
-	}
 	if (ray->raydir_x < 0 && ray->hit_side == 0)
-	{
 		ray->wall_type = WALL_WE;
-		ray->texture_x = IMG_W - 1 - ray->texture_x;
-	}
 	if (ray->raydir_x > 0 && ray->hit_side == 0)
 		ray->wall_type = WALL_EA;
 }

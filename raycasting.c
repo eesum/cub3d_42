@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:31:26 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 10:56:39 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:54:53 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ static void	calculate_walldist_n_wallx(t_ray *ray, t_player *player)
 	}
 	wall_x -= floor(wall_x);
 	ray->texture_x = (int)(wall_x * (double)IMG_W);
+	if (ray->raydir_y > 0 && ray->hit_side == 1)
+		ray->texture_x = IMG_W - 1 - ray->texture_x;
+	if (ray->raydir_x < 0 && ray->hit_side == 0)
+		ray->texture_x = IMG_W - 1 - ray->texture_x;
 }
 
 static void	calculate_wall_height(t_ray *ray)
