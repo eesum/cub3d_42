@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 21:27:17 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 22:05:10 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/03 10:56:51 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void	parsing(int argc, char **argv, t_mlxdata *mlxdata)
 {
-	int len;
-	int fd;
+	int			len;
+	int			fd;
 	t_map_info	info;
 
 	if (argc != 2)

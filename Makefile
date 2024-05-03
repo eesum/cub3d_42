@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 18:38:57 by seohyeki          #+#    #+#              #
-#    Updated: 2024/05/02 22:24:26 by sumilee          ###   ########.fr        #
+#    Updated: 2024/05/03 10:34:11 by seohyeki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,9 @@ P_SRCS = parse/parsing.c \
 E_SRCS = main.c \
 		 raycasting.c \
 		 rendering.c \
-		 mlx.c
-U_SRCS = util.c
+		 key_press.c
+U_SRCS = util.c \
+		 mlx_util.c
 P_OBJS = $(P_SRCS:.c=.o)
 E_OBJS = $(E_SRCS:.c=.o)
 U_OBJS = $(U_SRCS:.c=.o)

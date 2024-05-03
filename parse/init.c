@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:22:28 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 22:06:42 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/03 10:54:40 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	init_player_info_loop(char **map, t_player *player)
 
 void	init_player_info(char **map, t_player *player)
 {
-	char c;
+	char	c;
 
 	ft_memset(player, 0, sizeof(int) * 6);
 	c = init_player_info_loop(map, player);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_trim.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:57:47 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/05/02 21:25:50 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/03 16:26:55 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ static void	trim_end_node(t_list **map)
 	while (1)
 	{
 		*map = ft_lstlast_prev(*map);
+		if (*map == NULL)
+		{
+			*map = head;
+			return ;
+		}
 		if (is_emptyline((char *)((*map)->next->content)))
 		{
 			ft_lstdelone((*map)->next, free);

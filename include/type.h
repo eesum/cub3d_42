@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 17:11:20 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/02 22:22:07 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/03 10:53:59 by seohyeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_ptr
 
 typedef struct s_render
 {
-	void 	*img;
+	void	*img;
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
@@ -77,11 +77,11 @@ typedef struct s_player
 
 typedef struct s_mlxdata
 {
-	t_ptr	ptr;
-	t_img	img;
+	t_ptr		ptr;
+	t_img		img;
 	t_player	player;
-	char	**map;
-	int	key_flag[6];
+	char		**map;
+	int			key_flag[6];
 }				t_mlxdata;
 
 typedef struct s_ray
