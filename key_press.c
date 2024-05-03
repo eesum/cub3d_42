@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 19:29:54 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 16:55:44 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/03 17:45:21 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int	render_screen(t_mlxdata *data)
 	double	move_unit;
 	double	rotate_unit;
 
-	move_unit = 0.05;
-	rotate_unit = 0.01;
+	move_unit = 0.1;
+	rotate_unit = 0.03;
 	if (data->key_flag[0] == 1)
 		move(data->map, &data->player, move_unit, 0);
 	if (data->key_flag[1] == 1)
