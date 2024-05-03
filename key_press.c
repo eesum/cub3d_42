@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 19:29:54 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 11:34:02 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:55:44 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
-#include "type.h"
 #include "util.h"
 #include <math.h>
 
@@ -55,6 +54,8 @@ void	move(char **map, t_player *player, double amount, int direction)
 {
 	double	move_x;
 	double	move_y;
+	double	move_for_x;
+	double	move_for_y;
 
 	if (direction == 0)
 	{
@@ -66,11 +67,12 @@ void	move(char **map, t_player *player, double amount, int direction)
 		move_x = player->pos_x + player->dir_y * amount;
 		move_y = player->pos_y + player->dir_x * -1 * amount;
 	}
-	if (map[(int)move_y][(int)move_x] != '1')
-	{
+	move_for_x = move_x + (move_x - player->pos_x) * 10;
+	move_for_y = move_y + (move_y - player->pos_y) * 10;
+	if (map[(int)player->pos_y][(int)move_for_x] != '1')
 		player->pos_x = move_x;
+	if (map[(int)move_for_y][(int)player->pos_x] != '1')
 		player->pos_y = move_y;
-	}
 }
 
 void	rotate(t_player *player, double amount)
