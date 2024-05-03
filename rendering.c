@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 21:16:19 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 10:58:29 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:45:52 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ static int	get_color_from_texture(void **img, t_ray *ray, int x, int y)
 	int			*addr;
 	t_render	tex;
 
-	tex.addr = mlx_get_data_addr(img[ray->wall_type], &tex.bits_per_pixel, &tex.size_line, &tex.endian);
+	tex.addr = mlx_get_data_addr(img[ray->wall_type], \
+								&tex.bits_per_pixel, \
+								&tex.size_line, \
+								&tex.endian);
 	if (tex.addr == NULL)
 		error_exit("Mlx error.");
 	addr = (int *)tex.addr;
@@ -73,14 +76,17 @@ void	draw_line(int line, t_img *img, t_ray *ray, t_render *screen)
 	i = 0;
 	while (i < WIN_H)
 	{
-		pixel = screen->addr + (i * screen->size_line) + (line * screen->bits_per_pixel / 8);
+		pixel = screen->addr + \
+				(i * screen->size_line) + \
+				(line * screen->bits_per_pixel / 8);
 		if (i < ray->draw_start)
 			*(int *)pixel = img->cl_color;
 		else if (i > ray->draw_end)
 			*(int *)pixel = img->fl_color;
 		else
 		{
-			color = get_color_from_texture(img->texture, ray, (int)ray->texture_x, i);
+			color = get_color_from_texture(img->texture, ray, \
+											(int)ray->texture_x, i);
 			*(int *)pixel = color;
 		}
 		i++;
