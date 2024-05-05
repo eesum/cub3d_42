@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:56:33 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/04/29 20:24:45 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/05 15:23:45 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	check_map_valid(t_list *map)
 	player_flag = 0;
 	while (map)
 	{
-		if (is_emptyline(map->content))
-			error_exit("Invalid map.");
 		if (is_not_element(map->content, &player_flag))
 			error_exit("Invalid map.");
 		map = map->next;
