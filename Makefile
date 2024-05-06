@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/17 18:38:57 by seohyeki          #+#    #+#              #
-#    Updated: 2024/05/03 10:34:11 by seohyeki         ###   ########.fr        #
+#    Updated: 2024/05/06 15:43:57 by sumilee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,19 +25,17 @@ P_SRCS = parse/parsing.c \
 		 parse/init.c \
 		 parse/info_to_img.c
 E_SRCS = main.c \
-		 raycasting.c \
-		 rendering.c \
-		 key_press.c
-U_SRCS = util.c \
-		 mlx_util.c
+		 exec/raycasting.c \
+		 exec/rendering.c \
+		 exec/key_press.c \
+		 exec/util.c \
+		 exec/mlx_util.c
 P_OBJS = $(P_SRCS:.c=.o)
 E_OBJS = $(E_SRCS:.c=.o)
-U_OBJS = $(U_SRCS:.c=.o)
 P_DEPS = $(P_SRCS:.c=.d)
 E_DEPS = $(E_SRCS:.c=.d)
-U_DEPS = $(U_SRCS:.c=.d)
-A_OBJS = $(P_OBJS) $(E_OBJS) $(U_OBJS)
-A_DEPS = $(P_DEPS) $(E_DEPS) $(U_DEPS)
+A_OBJS = $(P_OBJS) $(E_OBJS)
+A_DEPS = $(P_DEPS) $(E_DEPS)
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
 LIBINC = -lmlx -L$(MLX_DIR) -lft -L$(LIBFT_DIR) -framework OpenGL -framework Appkit
 

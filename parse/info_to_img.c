@@ -6,13 +6,13 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 21:59:10 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 15:53:19 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:42:39 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-#include "mlx.h"
 #include "util.h"
+#include "mlx.h"
 
 static void	count_comma(char *code)
 {

@@ -6,14 +6,12 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:36 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/06 15:33:20 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:41:48 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "util.h"
-
-#include <stdio.h>
 
 static int	find_n_save(char **split, t_map_info *info, int *cnt)
 {
