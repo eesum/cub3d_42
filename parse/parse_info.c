@@ -6,12 +6,14 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:36 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/05 15:18:46 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:33:20 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "util.h"
+
+#include <stdio.h>
 
 static int	find_n_save(char **split, t_map_info *info, int *cnt)
 {
@@ -43,7 +45,6 @@ void	parse_map_info(int fd, t_map_info *info)
 	char	**split;
 	int		cnt;
 
-	ft_memset(info, 0, sizeof(char *) * 6);
 	cnt = 0;
 	while (cnt < 6)
 	{
@@ -51,13 +52,16 @@ void	parse_map_info(int fd, t_map_info *info)
 		if (buff == NULL)
 			break ;
 		buff[ft_strlen(buff) - 1] = '\0';
+		if (is_emptyline(buff))
+		{
+			free(buff);
+			continue ;
+		}
 		split = ft_split(buff, ' ');
 		if (split == NULL)
 			error_exit("Malloc failed.");
-		if (is_emptyline(buff))
-			free_arr(split);
 		free(buff);
-		if (split && split[0] && find_n_save(split, info, &cnt) > 0)
+		if (split[0] && find_n_save(split, info, &cnt) > 0)
 			break ;
 	}
 	if (cnt != 6)
