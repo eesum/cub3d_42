@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 19:05:25 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/05/03 11:39:02 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:16:17 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ int	main(int argc, char **argv)
 	mlx_hook(mlxdata.ptr.win_ptr, 3, 2, release_handler, &mlxdata.ptr);
 	mlx_loop_hook(mlxdata.ptr.mlx_ptr, render_screen, &mlxdata);
 	mlx_loop(mlxdata.ptr.mlx_ptr);
-	//전체 free
 	return (0);
 }
