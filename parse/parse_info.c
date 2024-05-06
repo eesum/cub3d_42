@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:47:36 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 16:03:29 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/05 15:18:46 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	parse_map_info(int fd, t_map_info *info)
 		split = ft_split(buff, ' ');
 		if (split == NULL)
 			error_exit("Malloc failed.");
+		if (is_emptyline(buff))
+			free_arr(split);
 		free(buff);
-		if (split[0] == NULL)
-			free(split);
-		if (split[0] && find_n_save(split, info, &cnt) > 0)
+		if (split && split[0] && find_n_save(split, info, &cnt) > 0)
 			break ;
 	}
 	if (cnt != 6)

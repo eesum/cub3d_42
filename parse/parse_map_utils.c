@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:59:35 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/04/29 20:25:13 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:53:50 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_emptyline(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i] == 32)
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '\n' || str[i] == '\0')
 		return (1);
