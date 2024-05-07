@@ -6,10 +6,11 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 18:59:35 by seohyeki          #+#    #+#             */
-/*   Updated: 2024/05/05 14:53:50 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:42:24 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parse.h"
 #include "util.h"
 
 int	is_emptyline(char *str)

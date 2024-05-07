@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 19:29:54 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 17:45:21 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/06 22:26:20 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,13 @@ void	move(char **map, t_player *player, double amount, int direction)
 		move_x = player->pos_x + player->dir_y * amount;
 		move_y = player->pos_y + player->dir_x * -1 * amount;
 	}
-	move_for_x = move_x + (move_x - player->pos_x) * 10;
-	move_for_y = move_y + (move_y - player->pos_y) * 10;
-	if (map[(int)player->pos_y][(int)move_for_x] != '1')
+	move_for_x = copysign(0.1, move_x - player->pos_x);
+	move_for_y = copysign(0.1, move_y - player->pos_y);
+	if (map[(int)(player->pos_y + 0.1)][(int)(move_x + move_for_x)] != '1' \
+		&& map[(int)(player->pos_y - 0.1)][(int)(move_x + move_for_x)] != '1')
 		player->pos_x = move_x;
-	if (map[(int)move_for_y][(int)player->pos_x] != '1')
+	if (map[(int)(move_y + move_for_y)][(int)(player->pos_x + 0.1)] != '1' \
+		&& map[(int)(move_y + move_for_y)][(int)(player->pos_x - 0.1)] != '1')
 		player->pos_y = move_y;
 }
 
