@@ -6,7 +6,7 @@
 /*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 21:59:10 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/06 15:42:39 by sumilee          ###   ########.fr       */
+/*   Updated: 2024/05/08 12:32:08 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ static void	convert_color(char *code, int *color)
 	while (i < 3 && split[i])
 	{
 		temp = ft_atoi_err(split[i]);
-		if (temp > 255)
-			error_exit("Wrong color information.");
 		result |= temp << ((2 - i) * 8);
 		i++;
 	}

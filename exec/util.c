@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seohyeki <seohyeki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: sumilee <sumilee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:50:33 by sumilee           #+#    #+#             */
-/*   Updated: 2024/05/03 10:32:28 by seohyeki         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:31:05 by sumilee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,11 @@ int	ft_atoi_err(const char *nptr)
 		i++;
 	}
 	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
+	{
 		result = result * 10 + (nptr[i++] - '0');
+		if (result > 255)
+			error_exit("Wrong color information.");
+	}
 	if (sign < 0 || nptr[i])
 		error_exit("Wrong color information.");
 	return (result);
